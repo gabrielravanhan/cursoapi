@@ -27,4 +27,8 @@ public class CursoService {
                         + id + " Tipo: " + Curso.class.getName()
         ));
     }
+
+    public Curso salvar(Curso curso) {
+        return cursoRepository.save(curso);
+    }
 }
