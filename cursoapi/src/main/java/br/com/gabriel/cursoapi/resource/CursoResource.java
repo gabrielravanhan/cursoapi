@@ -38,7 +38,9 @@ public class CursoResource {
         cursoRepository.deleteById(id);
     }
 
-    public void criar() {
-
+    @PostMapping()
+    public ResponseEntity<Curso> criar(@RequestBody Curso curso) {
+        Curso cursoSalvo = cursoService.salvar(curso);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cursoSalvo);
     }
 }
