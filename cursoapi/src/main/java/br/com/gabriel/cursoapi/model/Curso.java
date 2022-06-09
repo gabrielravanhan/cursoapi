@@ -1,10 +1,14 @@
 package br.com.gabriel.cursoapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="curso")
+@Table(name = "curso")
 public class Curso {
 
     @Id
@@ -12,6 +16,10 @@ public class Curso {
     private Integer id;
 
     private String nomecurso;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "curso")
+    private List<Aluno> alunos = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -27,6 +35,14 @@ public class Curso {
 
     public void setNomecurso(String nomecurso) {
         this.nomecurso = nomecurso;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 
     @Override
